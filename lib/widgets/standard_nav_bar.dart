@@ -55,34 +55,34 @@ class StandardNavBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           
+          const Spacer(), // Push content to the right
+
           if (isDesktop) ...[
-            const SizedBox(width: 48),
             _NavLink(label: "Home", onTap: onHome),
             const SizedBox(width: 24),
             _NavLink(label: "Auctions", onTap: () {}), // Placeholder
             const SizedBox(width: 24),
             _NavLink(label: "Contact Us", onTap: () {}), // Placeholder
+            
+            if (showAuthButtons) ...[
+               const SizedBox(width: 48),
+               TextButton(
+                onPressed: onLogin,
+                style: TextButton.styleFrom(
+                  foregroundColor: AppColors.primary,
+                  textStyle: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                child: const Text("Log In"),
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton(
+                onPressed: onSignUp,
+                child: const Text("Sign Up"),
+              ),
+            ],
           ]
         ],
       ),
-      actions: [
-        if (showAuthButtons && isDesktop) ...[
-          TextButton(
-            onPressed: onLogin,
-            style: TextButton.styleFrom(
-              foregroundColor: AppColors.primary,
-              textStyle: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            child: const Text("Log In"),
-          ),
-          const SizedBox(width: 16),
-          ElevatedButton(
-            onPressed: onSignUp,
-            child: const Text("Sign Up"),
-          ),
-          const SizedBox(width: 24),
-        ]
-      ],
     );
   }
 }
