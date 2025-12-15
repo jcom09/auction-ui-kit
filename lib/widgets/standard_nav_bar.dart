@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/colors.dart';
 
 class StandardNavBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onLogin;
-  final VoidCallback? onSignUp;
-  final VoidCallback? onHome;
-  final bool showAuthButtons;
+  final VoidCallback? onSignUp; // Kept for backward compatibility but unused
+  final VoidCallback? onHome;   // Kept for backward compatibility but unused
+  final bool showAuthButtons;   // Kept for backward compatibility but unused
 
   const StandardNavBar({
     super.key,
@@ -17,6 +18,13 @@ class StandardNavBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(70);
+
+  Future<void> _launch(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.platformDefault)) {
+       debugPrint('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +43,9 @@ class StandardNavBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Row(
         children: [
-          // Basic Logo
+          // Logo -> https://www.domain.com.au
           InkWell(
-            onTap: onHome,
+            onTap: () => _launch('https://www.domain.com.au'),
             child: Row(
               children: [
                 const Icon(Icons.local_taxi, color: AppColors.primary, size: 32),
@@ -58,31 +66,19 @@ class StandardNavBar extends StatelessWidget implements PreferredSizeWidget {
           const Spacer(), // Push content to the right
 
           if (isDesktop) ...[
-            _NavLink(label: "Home", onTap: onHome),
+            _NavLink(label: "Sell My Car", onTap: () => _launch('https://sellmycar.domain.com.au')),
             const SizedBox(width: 24),
-            _NavLink(label: "Auctions", onTap: () {}), // Placeholder
+            _NavLink(label: "Buy A Car", onTap: () => _launch('https://buyacar.domain.com.au')),
             const SizedBox(width: 24),
-            _NavLink(label: "Contact Us", onTap: () {}), // Placeholder
-            
-            if (showAuthButtons) ...[
-               const SizedBox(width: 48),
-               TextButton(
-                onPressed: onLogin,
-                style: TextButton.styleFrom(
-                  foregroundColor: AppColors.primary,
-                  textStyle: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                child: const Text("Log In"),
-              ),
-              const SizedBox(width: 16),
-              ElevatedButton(
-                onPressed: onSignUp,
-                child: const Text("Sign Up"),
-              ),
-            ],
+            _NavLink(label: "Dealers", onTap: () => _launch('https://dealers.domain.com.au')),
+            const SizedBox(width: 24),
+            _NavLink(label: "Blog", onTap: () => _launch('https://www.domain.com.au/blog')),
+            const SizedBox(width: 24),
+            _NavLink(label: "Contact Us", onTap: () => _launch('https://www.domain.com.au/contact')),
           ]
         ],
       ),
+      // No actions/auth buttons as requested
     );
   }
 }
@@ -102,7 +98,7 @@ class _NavLink extends StatelessWidget {
         child: Text(
           label,
           style: TextStyle(
-            color: Colors.grey[800],
+            color: Colors.grey[800], // Black/Dark Grey
             fontWeight: FontWeight.w600,
             fontSize: 16,
           ),
