@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../theme/colors.dart';
-import '../theme/text_styles.dart';
 
 class StandardFooter extends StatelessWidget {
   final VoidCallback? onPrivacyPolicy;
@@ -36,7 +34,7 @@ class StandardFooter extends StatelessWidget {
           // Left: Logo
           _FooterLogo(),
           const SizedBox(width: 32),
-          
+
           // Middle: Copyright (Expanded to fill space if needed, or just centered?)
           // User asked for: Left: Logo, Middle: Copyright, Right: Links.
           // To achieve this cleanly:
@@ -49,10 +47,9 @@ class StandardFooter extends StatelessWidget {
 
           // Right: Links
           _FooterLinks(
-            onPrivacy: onPrivacyPolicy, 
-            onTerms: onTermsOfUse, 
-            onContact: onContactSupport
-          ),
+              onPrivacy: onPrivacyPolicy,
+              onTerms: onTermsOfUse,
+              onContact: onContactSupport),
         ],
       ),
     );
@@ -71,8 +68,8 @@ class StandardFooter extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         _FooterLinks(
-          onPrivacy: onPrivacyPolicy, 
-          onTerms: onTermsOfUse, 
+          onPrivacy: onPrivacyPolicy,
+          onTerms: onTermsOfUse,
           onContact: onContactSupport,
           isVertical: true,
         ),
@@ -126,10 +123,12 @@ class _FooterLinks extends StatelessWidget {
 
     if (isVertical) {
       return Column(
-        children: links.map((l) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: l,
-        )).toList(),
+        children: links
+            .map((l) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: l,
+                ))
+            .toList(),
       );
     }
 
