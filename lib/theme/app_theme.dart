@@ -7,23 +7,27 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primary,
-        primary: AppColors.primary,
-        secondary: AppColors.secondary,
-        surface: AppColors.surface,
+        seedColor: AppColors.pearGreen,
+        primary: AppColors.pearGreen,
+        secondary: AppColors.leafGreen,
+        surface: AppColors.white,
         error: AppColors.error,
+        background: AppColors.cream,
       ),
-      scaffoldBackgroundColor: AppColors.background,
-      textTheme: AppTextStyles.textTheme,
+      scaffoldBackgroundColor: AppColors.cream,
+      textTheme: AppTextStyles.textTheme.apply(
+        bodyColor: AppColors.deepGreen,
+        displayColor: AppColors.deepGreen,
+      ),
 
       // AppBar Theme
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.surface,
-        foregroundColor: AppColors.textPrimary,
+        backgroundColor: AppColors.cream,
+        foregroundColor: AppColors.deepGreen,
         centerTitle: false,
         elevation: 0,
         scrolledUnderElevation: 0,
-        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.deepGreen),
       ),
 
       // Button Themes

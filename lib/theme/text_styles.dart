@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
-  static TextTheme get textTheme => GoogleFonts.poppinsTextTheme().copyWith(
+  static TextTheme get textTheme => GoogleFonts.interTextTheme().copyWith(
         displayLarge: GoogleFonts.poppins(
           fontSize: 57,
           fontWeight: FontWeight.bold,
@@ -49,17 +49,17 @@ class AppTextStyles {
           fontWeight: FontWeight.w500,
           color: AppColors.textPrimary,
         ),
-        bodyLarge: GoogleFonts.poppins(
+        bodyLarge: GoogleFonts.inter(
           fontSize: 16,
           fontWeight: FontWeight.normal,
           color: AppColors.textPrimary,
         ),
-        bodyMedium: GoogleFonts.poppins(
+        bodyMedium: GoogleFonts.inter(
           fontSize: 14,
           fontWeight: FontWeight.normal,
           color: AppColors.textPrimary,
         ),
-        bodySmall: GoogleFonts.poppins(
+        bodySmall: GoogleFonts.inter(
           fontSize: 12,
           fontWeight: FontWeight.normal,
           color: AppColors.textSecondary,

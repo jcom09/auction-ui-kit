@@ -40,7 +40,7 @@ class StandardFooter extends StatelessWidget {
           // To achieve this cleanly:
           const Spacer(),
           const Text(
-            "© 2025 CarMatch. All rights reserved.",
+            "© 2025 CarPear. All rights reserved.",
             style: TextStyle(color: Colors.grey, fontSize: 14),
           ),
           const Spacer(),
@@ -62,7 +62,7 @@ class StandardFooter extends StatelessWidget {
         _FooterLogo(),
         const SizedBox(height: 24),
         const Text(
-          "© 2025 CarMatch. All rights reserved.",
+          "© 2025 CarPear. All rights reserved.",
           style: TextStyle(color: Colors.grey, fontSize: 14),
           textAlign: TextAlign.center,
         ),
@@ -87,7 +87,7 @@ class _FooterLogo extends StatelessWidget {
         const Icon(Icons.local_taxi, size: 24, color: Colors.grey),
         const SizedBox(width: 8),
         Text(
-          "CarMatch",
+          "CarPear",
           style: TextStyle(
             color: Colors.grey[800],
             fontWeight: FontWeight.bold,
