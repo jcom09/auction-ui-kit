@@ -20,76 +20,95 @@ class _CustomBurgerIconState extends State<CustomBurgerIcon> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      behavior: HitTestBehavior.opaque,
+      behavior: HitTestBehavior
+          .opaque, // Ensures the entire 32x32 area is tappable, not just the painted lines
       child: SizedBox(
-        width: 40,
-        height: 30,
+        width:
+            32, // Overall bounding box width matching Lucide React Menu/X icon size
+        height:
+            32, // Overall bounding box height matching Lucide React Menu/X icon size
         child: Stack(
           children: [
-            // Bar 1 (Top)
+            // Bar 1 (Top / Top-Left to Bottom-Right Line of X)
             AnimatedPositioned(
               duration: const Duration(milliseconds: 250),
               curve: Curves.easeInOut,
-              top: widget.isOpen ? 13 : 0,
-              left: 0,
-              right: 0,
+              top: widget.isOpen
+                  ? 15
+                  : 6, // If open, shift down to center (15). If closed, sit near the top (6).
+              left:
+                  4, // Inset slightly to make the line 24px wide within the 32px box (matching Lucide specs)
+              right: 4, // Inset slightly to make the line 24px wide
               child: AnimatedRotation(
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeInOut,
-                turns: widget.isOpen ? 0.125 : 0, // 0.125 * 360 = 45 degrees
+                turns: widget.isOpen
+                    ? 0.125
+                    : 0, // 0.125 turns = 45 degrees. Creates the \ part of the X.
                 child: Container(
-                  height: 4,
+                  height:
+                      2.0, // Controls the thickness of the hamburger lines. Lower = thinner (matches Lucide stroke-width 2).
                   decoration: BoxDecoration(
-                    color: AppColors.deepGreen,
-                    borderRadius: BorderRadius.circular(2),
+                    color: AppColors.slateTrust, // The stroke color
+                    borderRadius: BorderRadius.circular(
+                        2.0), // Creates the StrokeCap.round effect matching Lucide
                   ),
                 ),
               ),
             ),
 
-            // Bar 2 (Middle)
+            // Bar 2 (Middle Line)
             AnimatedPositioned(
               duration: const Duration(milliseconds: 250),
               curve: Curves.easeInOut,
-              top: 13,
-              left: 0,
-              right:
-                  0, // If width 0 check relies on constraint or manual width?
-              // Using opacity for fade out as requested,
-              // and maybe width change if needed, but opacity is safer for "fade out".
-              // Request says: If Open: opacity: 0, width: 0.
+              top: 15, // Fixed in the exact vertical center of the 32x32 box
+              left: 4, // Inset matching top and bottom bars
+              right: 4, // Inset matching top and bottom bars
               child: AnimatedOpacity(
                 duration: const Duration(milliseconds: 250),
-                opacity: widget.isOpen ? 0 : 1,
+                opacity: widget.isOpen
+                    ? 0
+                    : 1, // Completely fade out when the menu is open to hide the middle bar
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 250),
                   curve: Curves.easeInOut,
-                  height: 4,
-                  width: widget.isOpen ? 0 : double.infinity,
+                  height:
+                      2.0, // Matches the thin 2.0 stroke width of the other bars
+                  width: widget.isOpen
+                      ? 0
+                      : double
+                          .infinity, // Retract width to 0 for a smooth exit animation alongside fade
                   decoration: BoxDecoration(
-                    color: AppColors.deepGreen,
-                    borderRadius: BorderRadius.circular(2),
+                    color: AppColors.slateTrust,
+                    borderRadius: BorderRadius.circular(
+                        2.0), // Required for StrokeCap.round effect
                   ),
                 ),
               ),
             ),
 
-            // Bar 3 (Bottom)
+            // Bar 3 (Bottom / Bottom-Left to Top-Right Line of X)
             AnimatedPositioned(
               duration: const Duration(milliseconds: 250),
               curve: Curves.easeInOut,
-              top: widget.isOpen ? 13 : 26,
-              left: 0,
-              right: 0,
+              top: widget.isOpen
+                  ? 15
+                  : 24, // If open, shift up to center (15) to intersect. If closed, sit near the bottom (24).
+              left: 4, // Inset matching top bar
+              right: 4, // Inset matching top bar
               child: AnimatedRotation(
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeInOut,
-                turns: widget.isOpen ? -0.125 : 0, // -45 degrees
+                turns: widget.isOpen
+                    ? -0.125
+                    : 0, // -0.125 turns = -45 degrees. Creates the / part of the X.
                 child: Container(
-                  height: 4,
+                  height:
+                      2.0, // Matches the thin 2.0 stroke width of the other bars
                   decoration: BoxDecoration(
-                    color: AppColors.deepGreen,
-                    borderRadius: BorderRadius.circular(2),
+                    color: AppColors.slateTrust,
+                    borderRadius: BorderRadius.circular(
+                        2.0), // Required for StrokeCap.round effect
                   ),
                 ),
               ),

@@ -13,6 +13,12 @@ class AuctionStatusTheme {
         return Colors.orange.shade800;
       case 'rejected':
         return Colors.red.shade700;
+      case 'offer_declined':
+        return Colors.red.shade700;
+      case 'live':
+        return Colors.green.shade600;
+      case 'offer_accepted':
+        return Colors.green.shade700;
       case 'ended':
         return Colors.grey.shade600;
       default:

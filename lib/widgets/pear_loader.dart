@@ -1,5 +1,5 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/colors.dart';
 
 class PearLoadingOverlay extends StatefulWidget {
@@ -52,7 +52,7 @@ class _PearLoadingOverlayState extends State<PearLoadingOverlay>
                       children: [
                         // LAYER 1: The "Empty" Shadow (Static Background)
                         Image.asset(
-                          'assets/images/pear_logo.png',
+                          'assets/images/carpear_logo_light.png',
                           package: 'auction_ui_kit',
                           height: pearHeight,
                           fit: BoxFit.contain,
@@ -60,18 +60,22 @@ class _PearLoadingOverlayState extends State<PearLoadingOverlay>
                           colorBlendMode: BlendMode.srcIn,
                         ),
 
-                        // LAYER 2: The Liquid Fill (Static Image, Animated Mask)
-                        ClipRect(
+                        // LAYER 2: The Liquid Fill (Animated Wave Mask)
+                        ClipPath(
+                          clipper: LiquidClipper(
+                            fillLevel:
+                                _controller.value, // Fills from 0.0 to 1.0
+                            wavePhase: _controller.value *
+                                2 *
+                                math.pi *
+                                2, // 2 full waves per animation cycle
+                          ),
                           child: Align(
-                            alignment: Alignment
-                                .bottomCenter, // Anchor the mask to the bottom
-                            heightFactor:
-                                _controller.value, // 0.0 = Empty, 1.0 = Full
+                            alignment: Alignment.bottomCenter,
                             child: Image.asset(
-                              'assets/images/pear_logo.png',
+                              'assets/images/carpear_logo_light.png',
                               package: 'auction_ui_kit',
-                              height:
-                                  pearHeight, // MUST be same height as Layer 1 to align pixels
+                              height: pearHeight,
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -86,5 +90,40 @@ class _PearLoadingOverlayState extends State<PearLoadingOverlay>
         ],
       ),
     );
+  }
+}
+
+class LiquidClipper extends CustomClipper<Path> {
+  final double fillLevel;
+  final double wavePhase;
+
+  LiquidClipper({required this.fillLevel, required this.wavePhase});
+
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    final double amplitude = 20.0; // Height of the wave
+    // Y coordinate of the liquid surface (0.0 is top, size.height is bottom)
+    final double baseHeight = size.height * (1.0 - fillLevel);
+
+    path.moveTo(0.0, size.height); // Bottom-left corner
+    path.lineTo(0.0, baseHeight); // Up to the liquid level
+
+    // Draw the sine wave across the width of the image
+    for (double x = 0.0; x <= size.width; x += 1) {
+      double y = baseHeight +
+          math.sin((x / size.width * 2 * math.pi) + wavePhase) * amplitude;
+      path.lineTo(x, y);
+    }
+
+    path.lineTo(size.width, size.height); // Down to bottom-right corner
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(LiquidClipper oldClipper) {
+    return oldClipper.fillLevel != fillLevel ||
+        oldClipper.wavePhase != wavePhase;
   }
 }

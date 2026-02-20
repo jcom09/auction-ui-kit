@@ -10,11 +10,12 @@ class AppTheme {
         seedColor: AppColors.pearGreen,
         primary: AppColors.pearGreen,
         secondary: AppColors.leafGreen,
-        surface: AppColors.white,
+        onError: AppColors.white,
+        surface: AppColors.surface, // Used instead of background
+        onSurface: AppColors.textPrimary,
         error: AppColors.error,
-        background: AppColors.cream,
       ),
-      scaffoldBackgroundColor: AppColors.cream,
+      scaffoldBackgroundColor: AppColors.offWhite,
       textTheme: AppTextStyles.textTheme.apply(
         bodyColor: AppColors.deepGreen,
         displayColor: AppColors.deepGreen,

@@ -22,4 +22,11 @@ class AppColors {
   // Functional
   static const Color error = Color(0xFFD32F2F);
   static const Color success = Color(0xFF388E3C);
+
+  // Trust & Action Palette
+  static const Color offWhite = Color(0xFFF8F9FA); // The new main background
+  static const Color coralAction = Color(0xFFE05D3A); // For primary buttons
+  static const Color slateTrust = Color(0xFF2A4365); // For headers/text
+  static const Color amberAlert = Color(0xFFF2A900); // For warnings
+  static const Color emeraldSuccess = Color(0xFF00A859); // For success states
 }
