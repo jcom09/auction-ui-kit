@@ -17,24 +17,24 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: AppColors.offWhite,
       textTheme: AppTextStyles.textTheme.apply(
-        bodyColor: AppColors.deepGreen,
-        displayColor: AppColors.deepGreen,
+        bodyColor: AppColors.slateTrust,
+        displayColor: AppColors.slateTrust,
       ),
 
       // AppBar Theme
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.cream,
-        foregroundColor: AppColors.deepGreen,
+        backgroundColor: AppColors.offWhite,
+        foregroundColor: AppColors.slateTrust,
         centerTitle: false,
         elevation: 0,
         scrolledUnderElevation: 0,
-        iconTheme: IconThemeData(color: AppColors.deepGreen),
+        iconTheme: IconThemeData(color: AppColors.slateTrust),
       ),
 
       // Button Themes
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
+          backgroundColor: AppColors.coralAction,
           foregroundColor: Colors.white,
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
