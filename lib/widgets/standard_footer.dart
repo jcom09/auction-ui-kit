@@ -29,9 +29,9 @@ class StandardFooter extends StatelessWidget {
         ],
       ),
       padding: const EdgeInsets.only(top: 60, bottom: 32, left: 24, right: 24),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth > 800;
+      child: Builder(
+        builder: (context) {
+          final isDesktop = MediaQuery.of(context).size.width > 800;
 
           return Column(
             children: [
