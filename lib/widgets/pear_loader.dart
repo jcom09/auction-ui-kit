@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 
 class PearLoadingOverlay extends StatefulWidget {
-  const PearLoadingOverlay({super.key});
+  final double? progress;
+  final String? message;
+
+  const PearLoadingOverlay({
+    super.key,
+    this.progress,
+    this.message,
+  });
 
   @override
   State<PearLoadingOverlay> createState() => _PearLoadingOverlayState();
@@ -64,7 +71,7 @@ class _PearLoadingOverlayState extends State<PearLoadingOverlay>
                         ClipPath(
                           clipper: LiquidClipper(
                             fillLevel:
-                                _controller.value, // Fills from 0.0 to 1.0
+                                widget.progress ?? _controller.value, // Fills from 0.0 to 1.0
                             wavePhase: _controller.value *
                                 2 *
                                 math.pi *
@@ -87,6 +94,17 @@ class _PearLoadingOverlayState extends State<PearLoadingOverlay>
               );
             },
           ),
+          if (widget.message != null) ...[
+            const SizedBox(height: 32),
+            Text(
+              widget.message!,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: AppColors.deepGreen,
+              ),
+            ),
+          ],
         ],
       ),
     );
