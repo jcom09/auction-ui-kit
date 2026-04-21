@@ -167,7 +167,7 @@ class StandardFooter extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         _buildFooterLink("Terms & Conditions", "https://carpear.com.au/terms/"),
-        _buildFooterLink("Privacy Policy", "https://carpear.com.au/privacy/"),
+        _buildFooterLink("Privacy Policy", "/privacy-policy"),
       ],
     );
   }

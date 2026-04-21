@@ -31,6 +31,27 @@ class AppTheme {
         iconTheme: IconThemeData(color: AppColors.slateTrust),
       ),
 
+      // Modal Themes
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.offWhite,
+        modalBackgroundColor: AppColors.offWhite,
+        surfaceTintColor: Colors.transparent,
+        elevation: 12.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          side: BorderSide(color: AppColors.slateTrust, width: 1.0),
+        ),
+      ),
+      dialogTheme: const DialogThemeData(
+        backgroundColor: AppColors.offWhite,
+        surfaceTintColor: Colors.transparent,
+        elevation: 24.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+          side: BorderSide(color: AppColors.slateTrust, width: 1.0),
+        ),
+      ),
+
       // Button Themes
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -42,7 +63,7 @@ class AppTheme {
             borderRadius: BorderRadius.circular(8),
           ),
           textStyle: AppTextStyles.textTheme.labelLarge?.copyWith(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
@@ -56,7 +77,19 @@ class AppTheme {
             borderRadius: BorderRadius.circular(8),
           ),
           textStyle: AppTextStyles.textTheme.labelLarge?.copyWith(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          textStyle: AppTextStyles.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
