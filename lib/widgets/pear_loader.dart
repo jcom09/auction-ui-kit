@@ -40,7 +40,7 @@ class _PearLoadingOverlayState extends State<PearLoadingOverlay>
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: AppColors.cream.withValues(alpha: 0.9), // Full screen blocking
+      color: AppColors.offWhite.withValues(alpha: 0.9), // Full screen blocking
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -70,8 +70,8 @@ class _PearLoadingOverlayState extends State<PearLoadingOverlay>
                         // LAYER 2: The Liquid Fill (Animated Wave Mask)
                         ClipPath(
                           clipper: LiquidClipper(
-                            fillLevel:
-                                widget.progress ?? _controller.value, // Fills from 0.0 to 1.0
+                            fillLevel: widget.progress ??
+                                _controller.value, // Fills from 0.0 to 1.0
                             wavePhase: _controller.value *
                                 2 *
                                 math.pi *
