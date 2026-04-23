@@ -1,67 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTextStyles {
-  static TextTheme get textTheme => GoogleFonts.ibmPlexSansTextTheme().copyWith(
-        displayLarge: GoogleFonts.ibmPlexSans(
+  static TextTheme get textTheme => const TextTheme(
+        displayLarge: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 57,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w800,
+          letterSpacing: -1.0,
           color: AppColors.textPrimary,
         ),
-        displayMedium: GoogleFonts.ibmPlexSans(
+        displayMedium: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 45,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.8,
           color: AppColors.textPrimary,
         ),
-        displaySmall: GoogleFonts.ibmPlexSans(
+        displaySmall: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 36,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.5,
           color: AppColors.textPrimary,
         ),
-        headlineLarge: GoogleFonts.ibmPlexSans(
+        headlineLarge: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 32,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.5,
           color: AppColors.textPrimary,
         ),
-        headlineMedium: GoogleFonts.ibmPlexSans(
+        headlineMedium: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 28,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.3,
           color: AppColors.textPrimary,
         ),
-        headlineSmall: GoogleFonts.ibmPlexSans(
+        headlineSmall: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 24,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.2,
+          color: AppColors.textPrimary,
+        ),
+        titleLarge: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
+          fontSize: 22,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.1,
+          color: AppColors.textPrimary,
+        ),
+        titleMedium: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
+          fontSize: 16,
           fontWeight: FontWeight.w600,
           color: AppColors.textPrimary,
         ),
-        titleLarge: GoogleFonts.ibmPlexSans(
-          fontSize: 22,
-          fontWeight: FontWeight.w500,
+        titleSmall: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
           color: AppColors.textPrimary,
         ),
-        titleMedium: GoogleFonts.ibmPlexSans(
+        bodyLarge: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 16,
           fontWeight: FontWeight.w500,
           color: AppColors.textPrimary,
         ),
-        titleSmall: GoogleFonts.ibmPlexSans(
+        bodyMedium: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 14,
           fontWeight: FontWeight.w500,
           color: AppColors.textPrimary,
         ),
-        bodyLarge: GoogleFonts.ibmPlexSans(
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-          color: AppColors.textPrimary,
-        ),
-        bodyMedium: GoogleFonts.ibmPlexSans(
-          fontSize: 14,
-          fontWeight: FontWeight.normal,
-          color: AppColors.textPrimary,
-        ),
-        bodySmall: GoogleFonts.ibmPlexSans(
+        bodySmall: TextStyle(
+          fontFamily: 'Inter',
+          package: 'auction_ui_kit',
           fontSize: 12,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.w500,
           color: AppColors.textSecondary,
         ),
       );
