@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/colors.dart';
 
 class StandardFooter extends StatelessWidget {
@@ -66,7 +65,7 @@ class StandardFooter extends StatelessWidget {
               const SizedBox(height: 24),
               Text(
                 "© ${DateTime.now().year} CarPear. All rights reserved. • ABN: 75 900 374 146",
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: 14,
                   color: AppColors.deepGreen.withValues(alpha: 0.4),
                 ),
@@ -99,7 +98,7 @@ class StandardFooter extends StatelessWidget {
           child: Text(
             "Sell your car the modern way. Verified dealers compete — you win.",
             textAlign: isDesktop ? TextAlign.left : TextAlign.center,
-            style: GoogleFonts.poppins(
+            style: TextStyle(
               color: AppColors.deepGreen.withValues(alpha: 0.8),
               fontSize: 16,
               height: 1.5,
@@ -137,7 +136,7 @@ class StandardFooter extends StatelessWidget {
       children: [
         Text(
           "Quick Links",
-          style: GoogleFonts.poppins(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: AppColors.deepGreen,
@@ -159,7 +158,7 @@ class StandardFooter extends StatelessWidget {
       children: [
         Text(
           "Legal",
-          style: GoogleFonts.poppins(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: AppColors.deepGreen,
@@ -180,7 +179,7 @@ class StandardFooter extends StatelessWidget {
         hoverColor: Colors.transparent,
         child: Text(
           title,
-          style: GoogleFonts.poppins(
+          style: TextStyle(
             color: AppColors.deepGreen.withValues(alpha: 0.8),
             fontSize: 16,
           ),

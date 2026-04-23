@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme/colors.dart';
 import 'custom_burger_icon.dart'; // Import created in Step 1
@@ -125,7 +124,7 @@ class _StandardNavBarState extends State<StandardNavBar> {
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: AnimatedDefaultTextStyle(
                             duration: const Duration(milliseconds: 50),
-                            style: GoogleFonts.poppins(
+                            style: TextStyle(
                               color: AppColors.deepGreen,
                               fontWeight: isHovering
                                   ? FontWeight.w600
@@ -250,7 +249,7 @@ class _MobileMenuOverlayState extends State<_MobileMenuOverlay> {
                         child: Text(
                           item['label']!,
                           textAlign: TextAlign.center, // Perfect text centering
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             fontSize:
                                 22, // Slightly larger for full screen overlay
                             fontWeight: FontWeight.w600,

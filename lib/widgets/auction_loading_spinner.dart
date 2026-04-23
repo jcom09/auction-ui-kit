@@ -12,9 +12,9 @@ class AuctionLoadingSpinner extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const CircularProgressIndicator(
-            // Use the theme's primary color, assuming it's set to purple in the main app theme.
-            // If explicit color is needed: color: Colors.purple,
-          ),
+              // Use the theme's primary color, assuming it's set to purple in the main app theme.
+              // If explicit color is needed: color: Colors.purple,
+              ),
           if (message != null) ...[
             const SizedBox(height: 16),
             Text(
