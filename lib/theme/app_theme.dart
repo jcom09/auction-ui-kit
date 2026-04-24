@@ -8,8 +8,8 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.pearGreen,
-        primary: AppColors.pearGreen,
-        secondary: AppColors.leafGreen,
+        primary: AppColors.deepGreen,
+        secondary: AppColors.pearGreen,
         onError: AppColors.white,
         surface: AppColors.surface, // Used instead of background
         onSurface: AppColors.textPrimary,
