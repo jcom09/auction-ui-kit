@@ -10,6 +10,18 @@ const String landingUrl = String.fromEnvironment(
   defaultValue: 'http://localhost:3000',
 );
 
+/// Seller app URL — maps to the "Sell My Car" flow.
+const String sellAppUrl = String.fromEnvironment(
+  'SELL_APP_URL',
+  defaultValue: 'http://localhost:3002',
+);
+
+/// Dealer portal URL — maps to the dealer-facing web app.
+const String dealerAppUrl = String.fromEnvironment(
+  'DEALER_APP_URL',
+  defaultValue: 'http://localhost:3001',
+);
+
 class StandardNavBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onLogin;
   final VoidCallback? onSignUp; // Kept for backward compatibility but unused
@@ -34,12 +46,13 @@ class StandardNavBar extends StatefulWidget implements PreferredSizeWidget {
 class _StandardNavBarState extends State<StandardNavBar> {
   int _hoveringIndex = -1; // -1 means nothing is hovered
 
-  static const List<Map<String, String>> _navItems = [
+  // static final (not const) because Blog/Contact Us use string interpolation.
+  static final List<Map<String, String>> _navItems = [
     {"label": "Home", "url": landingUrl},
-    {"label": "Sell My Car", "url": "https://sellmycar.carpear.com.au"},
-    {"label": "Dealers", "url": "https://dealers.carpear.com.au"},
-    {"label": "Blog", "url": "https://carpear.com.au/blog/"},
-    {"label": "Contact Us", "url": "https://carpear.com.au/contact-us/"},
+    {"label": "Sell My Car", "url": sellAppUrl},
+    {"label": "Dealers", "url": dealerAppUrl},
+    {"label": "Blog", "url": "$landingUrl/blog/"},
+    {"label": "Contact Us", "url": "$landingUrl/contact-us/"},
   ];
 
   static Future<void> _launchURL(String urlString) async {
