@@ -3,12 +3,21 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme/colors.dart';
 
+/// URLs injected at build time via --dart-define. Defaults to local dev ports.
+const String landingUrl  = String.fromEnvironment('LANDING_URL',   defaultValue: 'http://localhost:3000');
+const String sellAppUrl  = String.fromEnvironment('SELL_APP_URL',  defaultValue: 'http://localhost:3002');
+const String dealerAppUrl = String.fromEnvironment('DEALER_APP_URL', defaultValue: 'http://localhost:3001');
+
 class StandardFooter extends StatelessWidget {
   const StandardFooter({super.key});
 
-  Future<void> _launchURL(String urlString) async {
+  /// [windowName] defaults to '_self' (same tab). Pass '_blank' for social links
+  /// that should open externally without disrupting in-app navigation.
+  Future<void> _launchURL(String urlString, {String windowName = '_self'}) async {
     final uri = Uri.parse(urlString);
-    if (!await launchUrl(uri, mode: LaunchMode.platformDefault)) {
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, webOnlyWindowName: windowName);
+    } else {
       debugPrint('Could not launch $urlString');
     }
   }
@@ -84,7 +93,7 @@ class StandardFooter extends StatelessWidget {
           isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         InkWell(
-          onTap: () => _launchURL('https://carpear.com.au'),
+          onTap: () => _launchURL(landingUrl),
           child: Image.asset(
             'assets/images/CarPear_Logo_Primary.png',
             package: 'auction_ui_kit',
@@ -126,7 +135,8 @@ class StandardFooter extends StatelessWidget {
   Widget _buildSocialIcon(IconData icon, String url) {
     return IconButton(
       icon: FaIcon(icon, color: AppColors.deepGreen),
-      onPressed: () => _launchURL(url),
+      // Social links always open in a new tab
+      onPressed: () => _launchURL(url, windowName: '_blank'),
     );
   }
 
@@ -143,11 +153,11 @@ class StandardFooter extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildFooterLink("Home", "https://carpear.com.au"),
-        _buildFooterLink("Sell My Car", "https://sellmycar.carpear.com.au"),
-        _buildFooterLink("Dealers", "https://dealers.carpear.com.au"),
-        _buildFooterLink("Blog", "https://carpear.com.au/blog/"),
-        _buildFooterLink("Contact Us", "https://carpear.com.au/contact-us/"),
+        _buildFooterLink("Home", landingUrl),
+        _buildFooterLink("Sell My Car", sellAppUrl),
+        _buildFooterLink("Dealers", dealerAppUrl),
+        _buildFooterLink("Blog", "$landingUrl/blog/"),
+        _buildFooterLink("Contact Us", "$landingUrl/contact-us/"),
       ],
     );
   }
@@ -165,8 +175,8 @@ class StandardFooter extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildFooterLink("Terms & Conditions", "https://carpear.com.au/terms/"),
-        _buildFooterLink("Privacy Policy", "/privacy-policy"),
+        _buildFooterLink("Terms & Conditions", "$landingUrl/terms/"),
+        _buildFooterLink("Privacy Policy", "$landingUrl/privacy/"),
       ],
     );
   }
