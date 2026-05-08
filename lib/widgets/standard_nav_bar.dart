@@ -55,17 +55,17 @@ class _StandardNavBarState extends State<StandardNavBar> {
     {"label": "Contact Us", "url": "$landingUrl/contact-us/"},
   ];
 
-  static Future<void> _launchURL(String urlString) async {
-    final Uri url = Uri.parse(urlString);
-    if (await canLaunchUrl(url)) {
+  static Future<void> _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
       await launchUrl(
-        url,
-        // Opens in the same browser tab — critical for Flutter web apps
-        // to avoid breaking the SPA navigation flow.
+        uri,
+        // NOTE: mode: is intentionally omitted. Passing LaunchMode.externalApplication
+        // alongside webOnlyWindowName causes url_launcher to ignore _self on web.
         webOnlyWindowName: '_self',
       );
     } else {
-      debugPrint('Could not launch $urlString');
+      debugPrint('Could not launch $url');
     }
   }
 
