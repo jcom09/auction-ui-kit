@@ -3,6 +3,13 @@ import 'package:url_launcher/url_launcher.dart';
 import '../theme/colors.dart';
 import 'custom_burger_icon.dart'; // Import created in Step 1
 
+/// Landing site URL injected at build time via --dart-define=LANDING_URL=...
+/// Defaults to localhost:3000 for local development.
+const String landingUrl = String.fromEnvironment(
+  'LANDING_URL',
+  defaultValue: 'http://localhost:3000',
+);
+
 class StandardNavBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onLogin;
   final VoidCallback? onSignUp; // Kept for backward compatibility but unused
@@ -28,7 +35,7 @@ class _StandardNavBarState extends State<StandardNavBar> {
   int _hoveringIndex = -1; // -1 means nothing is hovered
 
   static const List<Map<String, String>> _navItems = [
-    {"label": "Home", "url": "https://carpear.com.au"},
+    {"label": "Home", "url": landingUrl},
     {"label": "Sell My Car", "url": "https://sellmycar.carpear.com.au"},
     {"label": "Dealers", "url": "https://dealers.carpear.com.au"},
     {"label": "Blog", "url": "https://carpear.com.au/blog/"},
@@ -38,7 +45,12 @@ class _StandardNavBarState extends State<StandardNavBar> {
   static Future<void> _launchURL(String urlString) async {
     final Uri url = Uri.parse(urlString);
     if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+      await launchUrl(
+        url,
+        // Opens in the same browser tab — critical for Flutter web apps
+        // to avoid breaking the SPA navigation flow.
+        webOnlyWindowName: '_self',
+      );
     } else {
       debugPrint('Could not launch $urlString');
     }
@@ -90,7 +102,7 @@ class _StandardNavBarState extends State<StandardNavBar> {
             children: [
               // Logo
               InkWell(
-                onTap: () => _launchURL('https://carpear.com.au'),
+                onTap: () => _launchURL(landingUrl),
                 child: Image.asset(
                   'assets/images/CarPear.png',
                   package: 'auction_ui_kit',
@@ -199,7 +211,7 @@ class _MobileMenuOverlayState extends State<_MobileMenuOverlay> {
                   InkWell(
                     onTap: () {
                       _handleClose();
-                      widget.onLaunchUrl('https://carpear.com.au');
+                      widget.onLaunchUrl(landingUrl);
                     },
                     child: Image.asset(
                       'assets/images/CarPear.png',
