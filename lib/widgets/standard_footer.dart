@@ -145,7 +145,7 @@ class StandardFooter extends StatelessWidget {
         const SizedBox(height: 16),
         _buildFooterLink("Home", "https://carpear.com.au"),
         _buildFooterLink("Sell My Car", "https://sellmycar.carpear.com.au"),
-        _buildFooterLink("Dealers", "https://dealer.carpear.com.au"),
+        _buildFooterLink("Dealers", "https://dealers.carpear.com.au"),
         _buildFooterLink("Blog", "https://carpear.com.au/blog/"),
         _buildFooterLink("Contact Us", "https://carpear.com.au/contact-us/"),
       ],
