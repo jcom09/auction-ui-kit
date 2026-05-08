@@ -3,10 +3,11 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme/colors.dart';
 
-/// URLs injected at build time via --dart-define. Defaults to local dev ports.
-const String landingUrl  = String.fromEnvironment('LANDING_URL',   defaultValue: 'http://localhost:3000');
-const String sellAppUrl  = String.fromEnvironment('SELL_APP_URL',  defaultValue: 'http://localhost:3002');
-const String dealerAppUrl = String.fromEnvironment('DEALER_APP_URL', defaultValue: 'http://localhost:3001');
+/// URLs injected at build time via --dart-define. File-private to avoid
+/// barrel-file export collisions with standard_nav_bar.dart.
+const String _landingUrl  = String.fromEnvironment('LANDING_URL',   defaultValue: 'http://localhost:3000');
+const String _sellAppUrl  = String.fromEnvironment('SELL_APP_URL',  defaultValue: 'http://localhost:3002');
+const String _dealerAppUrl = String.fromEnvironment('DEALER_APP_URL', defaultValue: 'http://localhost:3001');
 
 class StandardFooter extends StatelessWidget {
   const StandardFooter({super.key});
@@ -93,7 +94,7 @@ class StandardFooter extends StatelessWidget {
           isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         InkWell(
-          onTap: () => _launchURL(landingUrl),
+          onTap: () => _launchURL(_landingUrl),
           child: Image.asset(
             'assets/images/CarPear_Logo_Primary.png',
             package: 'auction_ui_kit',
@@ -153,11 +154,11 @@ class StandardFooter extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildFooterLink("Home", landingUrl),
-        _buildFooterLink("Sell My Car", sellAppUrl),
-        _buildFooterLink("Dealers", dealerAppUrl),
-        _buildFooterLink("Blog", "$landingUrl/blog/"),
-        _buildFooterLink("Contact Us", "$landingUrl/contact-us/"),
+        _buildFooterLink("Home", _landingUrl),
+        _buildFooterLink("Sell My Car", _sellAppUrl),
+        _buildFooterLink("Dealers", _dealerAppUrl),
+        _buildFooterLink("Blog", "$_landingUrl/blog/"),
+        _buildFooterLink("Contact Us", "$_landingUrl/contact-us/"),
       ],
     );
   }
@@ -175,8 +176,8 @@ class StandardFooter extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildFooterLink("Terms & Conditions", "$landingUrl/terms/"),
-        _buildFooterLink("Privacy Policy", "$landingUrl/privacy/"),
+        _buildFooterLink("Terms & Conditions", "$_landingUrl/terms/"),
+        _buildFooterLink("Privacy Policy", "$_landingUrl/privacy/"),
       ],
     );
   }

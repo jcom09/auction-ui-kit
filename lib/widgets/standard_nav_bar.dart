@@ -3,21 +3,21 @@ import 'package:url_launcher/url_launcher.dart';
 import '../theme/colors.dart';
 import 'custom_burger_icon.dart'; // Import created in Step 1
 
-/// Landing site URL injected at build time via --dart-define=LANDING_URL=...
-/// Defaults to localhost:3000 for local development.
-const String landingUrl = String.fromEnvironment(
+/// URLs injected at build time via --dart-define. File-private to avoid
+/// barrel-file export collisions with standard_footer.dart.
+const String _landingUrl = String.fromEnvironment(
   'LANDING_URL',
   defaultValue: 'http://localhost:3000',
 );
 
 /// Seller app URL — maps to the "Sell My Car" flow.
-const String sellAppUrl = String.fromEnvironment(
+const String _sellAppUrl = String.fromEnvironment(
   'SELL_APP_URL',
   defaultValue: 'http://localhost:3002',
 );
 
 /// Dealer portal URL — maps to the dealer-facing web app.
-const String dealerAppUrl = String.fromEnvironment(
+const String _dealerAppUrl = String.fromEnvironment(
   'DEALER_APP_URL',
   defaultValue: 'http://localhost:3001',
 );
@@ -48,11 +48,11 @@ class _StandardNavBarState extends State<StandardNavBar> {
 
   // static final (not const) because Blog/Contact Us use string interpolation.
   static final List<Map<String, String>> _navItems = [
-    {"label": "Home", "url": landingUrl},
-    {"label": "Sell My Car", "url": sellAppUrl},
-    {"label": "Dealers", "url": dealerAppUrl},
-    {"label": "Blog", "url": "$landingUrl/blog/"},
-    {"label": "Contact Us", "url": "$landingUrl/contact-us/"},
+    {"label": "Home", "url": _landingUrl},
+    {"label": "Sell My Car", "url": _sellAppUrl},
+    {"label": "Dealers", "url": _dealerAppUrl},
+    {"label": "Blog", "url": "$_landingUrl/blog/"},
+    {"label": "Contact Us", "url": "$_landingUrl/contact-us/"},
   ];
 
   static Future<void> _launchURL(String url) async {
@@ -115,7 +115,7 @@ class _StandardNavBarState extends State<StandardNavBar> {
             children: [
               // Logo
               InkWell(
-                onTap: () => _launchURL(landingUrl),
+                onTap: () => _launchURL(_landingUrl),
                 child: Image.asset(
                   'assets/images/CarPear.png',
                   package: 'auction_ui_kit',
@@ -224,7 +224,7 @@ class _MobileMenuOverlayState extends State<_MobileMenuOverlay> {
                   InkWell(
                     onTap: () {
                       _handleClose();
-                      widget.onLaunchUrl(landingUrl);
+                      widget.onLaunchUrl(_landingUrl);
                     },
                     child: Image.asset(
                       'assets/images/CarPear.png',
