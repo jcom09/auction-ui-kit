@@ -178,6 +178,7 @@ class StandardFooter extends StatelessWidget {
         const SizedBox(height: 16),
         _buildFooterLink("Terms & Conditions", "$_landingUrl/terms/"),
         _buildFooterLink("Privacy Policy", "$_landingUrl/privacy/"),
+        _buildFooterLink("Cookie Policy", "$_landingUrl/cookie-policy/"),
       ],
     );
   }
