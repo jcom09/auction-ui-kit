@@ -113,14 +113,27 @@ class _StandardNavBarState extends State<StandardNavBar> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Logo
+              // Logo lockup: icon mark + wordmark
               InkWell(
                 onTap: () => _launchURL(_landingUrl),
-                child: Image.asset(
-                  'assets/images/CarPear.png',
-                  package: 'auction_ui_kit',
-                  height: 35,
-                  fit: BoxFit.contain,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/carpear_logo_light.png',
+                      package: 'auction_ui_kit',
+                      height: 57,
+                      fit: BoxFit.contain,
+                    ),
+                    const SizedBox(width: 10),
+                    Image.asset(
+                      'assets/images/CarPear.png',
+                      package: 'auction_ui_kit',
+                      height: 34,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
                 ),
               ),
 
@@ -220,17 +233,30 @@ class _MobileMenuOverlayState extends State<_MobileMenuOverlay> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Logo
+                  // Logo lockup: icon mark + wordmark
                   InkWell(
                     onTap: () {
                       _handleClose();
                       widget.onLaunchUrl(_landingUrl);
                     },
-                    child: Image.asset(
-                      'assets/images/CarPear.png',
-                      package: 'auction_ui_kit',
-                      height: 35,
-                      fit: BoxFit.contain,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/carpear_logo_light.png',
+                          package: 'auction_ui_kit',
+                          height: 32,
+                          fit: BoxFit.contain,
+                        ),
+                        const SizedBox(width: 8),
+                        Image.asset(
+                          'assets/images/CarPear.png',
+                          package: 'auction_ui_kit',
+                          height: 35,
+                          fit: BoxFit.contain,
+                        ),
+                      ],
                     ),
                   ),
                   const Spacer(),
