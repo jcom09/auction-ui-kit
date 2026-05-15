@@ -120,13 +120,16 @@ class StandardFooter extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildSocialIcon(
-                FontAwesomeIcons.instagram, 'https://instagram.com'),
+                FontAwesomeIcons.instagram,
+                'https://www.instagram.com/carpear?igsh=NWd5bXB4aTNnN3k%3D'),
             const SizedBox(width: 8),
-            _buildSocialIcon(FontAwesomeIcons.facebook, 'https://facebook.com'),
+            _buildSocialIcon(
+                FontAwesomeIcons.facebook,
+                'https://www.facebook.com/profile.php?id=61589870814581'),
             const SizedBox(width: 8),
-            _buildSocialIcon(FontAwesomeIcons.xTwitter, 'https://twitter.com'),
-            const SizedBox(width: 8),
-            _buildSocialIcon(FontAwesomeIcons.youtube, 'https://youtube.com'),
+            _buildSocialIcon(
+                FontAwesomeIcons.tiktok,
+                'https://www.tiktok.com/@carpear_'),
           ],
         ),
       ],
