@@ -136,7 +136,7 @@ class StandardFooter extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialIcon(IconData icon, String url) {
+  Widget _buildSocialIcon(FaIconData icon, String url) {
     return IconButton(
       icon: FaIcon(icon, color: AppColors.deepGreen),
       // Social links always open in a new tab
