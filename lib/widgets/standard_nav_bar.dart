@@ -128,10 +128,11 @@ class _StandardNavBarState extends State<StandardNavBar> {
                     ),
                     const SizedBox(width: 10),
                     Image.asset(
-                      'assets/images/CarPear.png',
+                      'assets/images/CarPear_web.png',
                       package: 'auction_ui_kit',
                       height: 34,
                       fit: BoxFit.contain,
+                      filterQuality: FilterQuality.high,
                     ),
                   ],
                 ),
