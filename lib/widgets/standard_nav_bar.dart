@@ -121,7 +121,7 @@ class _StandardNavBarState extends State<StandardNavBar> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/carpear_logo_light.png',
+                      'assets/images/CarPear_logo_web.png',
                       package: 'auction_ui_kit',
                       height: 57,
                       fit: BoxFit.contain,
