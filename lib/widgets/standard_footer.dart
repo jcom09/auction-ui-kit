@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme/colors.dart';
-
-/// URLs injected at build time via --dart-define. File-private to avoid
-/// barrel-file export collisions with standard_nav_bar.dart.
-const String _landingUrl  = String.fromEnvironment('LANDING_URL',   defaultValue: 'http://localhost:3000');
-const String _sellAppUrl  = String.fromEnvironment('SELL_APP_URL',  defaultValue: 'http://localhost:3002');
-const String _dealerAppUrl = String.fromEnvironment('DEALER_APP_URL', defaultValue: 'http://localhost:3001');
+import 'standard_nav_bar.dart';
 
 class StandardFooter extends StatelessWidget {
   const StandardFooter({super.key});
@@ -89,12 +84,13 @@ class StandardFooter extends StatelessWidget {
   }
 
   Widget _buildBrandColumn(BuildContext context, bool isDesktop) {
+    final landing = getDynamicLandingUrl();
     return Column(
       crossAxisAlignment:
           isDesktop ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
         InkWell(
-          onTap: () => _launchURL(_landingUrl),
+          onTap: () => _launchURL(landing),
           child: Image.asset(
             'assets/images/CarPear_Logo_Primary.png',
             package: 'auction_ui_kit',
@@ -145,6 +141,7 @@ class StandardFooter extends StatelessWidget {
   }
 
   Widget _buildQuickLinksColumn(BuildContext context) {
+    final landing = getDynamicLandingUrl();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -157,16 +154,17 @@ class StandardFooter extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildFooterLink("Home", _landingUrl),
-        _buildFooterLink("Sell My Car", _sellAppUrl),
-        _buildFooterLink("Dealers", _dealerAppUrl),
-        _buildFooterLink("Blog", "$_landingUrl/blog/"),
-        _buildFooterLink("Contact Us", "$_landingUrl/contact-us/"),
+        _buildFooterLink("Home", landing),
+        _buildFooterLink("Sell My Car", "$landing/sellmycar/"),
+        _buildFooterLink("Dealers", "$landing/dealers/"),
+        _buildFooterLink("Blog", "$landing/blog/"),
+        _buildFooterLink("Contact Us", "$landing/contact-us/"),
       ],
     );
   }
 
   Widget _buildLegalColumn(BuildContext context) {
+    final landing = getDynamicLandingUrl();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -179,9 +177,9 @@ class StandardFooter extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        _buildFooterLink("Terms & Conditions", "$_landingUrl/terms/"),
-        _buildFooterLink("Privacy Policy", "$_landingUrl/privacy/"),
-        _buildFooterLink("Cookie Policy", "$_landingUrl/cookie-policy/"),
+        _buildFooterLink("Terms & Conditions", "$landing/terms/"),
+        _buildFooterLink("Privacy Policy", "$landing/privacy/"),
+        _buildFooterLink("Cookie Policy", "$landing/cookie-policy/"),
       ],
     );
   }
