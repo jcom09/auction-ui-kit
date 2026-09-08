@@ -3,24 +3,31 @@ import 'package:url_launcher/url_launcher.dart';
 import '../theme/colors.dart';
 import 'custom_burger_icon.dart'; // Import created in Step 1
 
-/// URLs injected at build time via --dart-define. File-private to avoid
-/// barrel-file export collisions with standard_footer.dart.
-const String _landingUrl = String.fromEnvironment(
-  'LANDING_URL',
-  defaultValue: 'http://localhost:3000',
-);
+String getDynamicLandingUrl() {
+  const envDefined = String.fromEnvironment('LANDING_URL');
+  if (envDefined.isNotEmpty) return envDefined;
 
-/// Seller app URL — maps to the "Sell My Car" flow.
-const String _sellAppUrl = String.fromEnvironment(
-  'SELL_APP_URL',
-  defaultValue: 'http://localhost:3002',
-);
+  final host = Uri.base.host;
+  if (host == 'localhost' ||
+      host == '127.0.0.1' ||
+      host.startsWith('192.168.') ||
+      host.startsWith('10.')) {
+    final localHost =
+        (host == 'localhost' || host == '127.0.0.1' || host.isEmpty)
+            ? 'localhost'
+            : host;
+    return 'http://$localHost:3000';
+  }
 
-/// Dealer portal URL — maps to the dealer-facing web app.
-const String _dealerAppUrl = String.fromEnvironment(
-  'DEALER_APP_URL',
-  defaultValue: 'http://localhost:3001',
-);
+  if (host.contains('dev.') ||
+      host.contains('qa-') ||
+      host.contains('preview-') ||
+      host.contains('qa.')) {
+    return 'https://dev.carpear.com.au';
+  }
+
+  return 'https://carpear.com.au';
+}
 
 class StandardNavBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onLogin;
@@ -46,14 +53,16 @@ class StandardNavBar extends StatefulWidget implements PreferredSizeWidget {
 class _StandardNavBarState extends State<StandardNavBar> {
   int _hoveringIndex = -1; // -1 means nothing is hovered
 
-  // static final (not const) because Blog/Contact Us use string interpolation.
-  static final List<Map<String, String>> _navItems = [
-    {"label": "Home", "url": _landingUrl},
-    {"label": "Sell My Car", "url": _sellAppUrl},
-    {"label": "Dealers", "url": _dealerAppUrl},
-    {"label": "Blog", "url": "$_landingUrl/blog/"},
-    {"label": "Contact Us", "url": "$_landingUrl/contact-us/"},
-  ];
+  List<Map<String, String>> get _navItems {
+    final landing = getDynamicLandingUrl();
+    return [
+      {"label": "Home", "url": landing},
+      {"label": "Sell My Car", "url": "$landing/sellmycar/"},
+      {"label": "Dealers", "url": "$landing/dealers/"},
+      {"label": "Blog", "url": "$landing/blog/"},
+      {"label": "Contact Us", "url": "$landing/contact-us/"},
+    ];
+  }
 
   static Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
@@ -115,7 +124,7 @@ class _StandardNavBarState extends State<StandardNavBar> {
             children: [
               // Logo lockup: icon mark + wordmark
               InkWell(
-                onTap: () => _launchURL(_landingUrl),
+                onTap: () => _launchURL(getDynamicLandingUrl()),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -238,7 +247,7 @@ class _MobileMenuOverlayState extends State<_MobileMenuOverlay> {
                   InkWell(
                     onTap: () {
                       _handleClose();
-                      widget.onLaunchUrl(_landingUrl);
+                      widget.onLaunchUrl(getDynamicLandingUrl());
                     },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
